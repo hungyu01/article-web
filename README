@@ -1,0 +1,112 @@
+# Article API Server
+
+這是一個使用 Express.js 和 MongoDB 建立的文章管理 API 服務器，採用分層架構設計。
+
+## 環境要求
+
+- Node.js (建議 v14.0.0 以上)
+- MongoDB (建議 v4.0.0 以上)
+- npm (建議 v6.0.0 以上)
+
+## 安裝步驟
+
+1. 克隆專案
+2. 進入專案目錄
+3. 執行 `npm install` 安裝依賴
+4. 執行 `npm start` 啟動服務器
+5. 使用 Postman 或其他 API 工具測試 API
+
+
+
+2. 安裝依賴
+- npm install
+
+
+3. 環境設定
+創建 `.env` 文件在專案根目錄，並設置以下環境變數：
+
+- `MONGODB_URI`:MongoDB 連接字串
+# MONGODB_URI=mongodb://localhost:27017/article-db
+- `PORT`:API 服務器端口 (預設 3000)
+# PORT=3000
+
+
+4. 啟動服務器
+- npm start
+- npm run dev
+
+
+- 運行測試：
+- npm run test
+
+
+## 專案結構
+src/
+├── controllers/ # 處理 HTTP 請求和響應
+├── services/ # 處理業務邏輯
+├── repositories/ # 處理數據庫操作
+├── models/ # 數據模型定義
+├── routes/ # 路由配置
+├── config/ # 配置文件
+└── tests/ # 測試文件
+
+
+
+## API 端點
+
+### 文章管理
+- `POST /api/articles` - 創建新文章
+- `GET /api/articles` - 獲取所有文章
+- `GET /api/articles/:id` - 獲取特定文章
+- `PUT /api/articles/:id` - 更新文章
+- `DELETE /api/articles/:id` - 刪除文章
+
+### 請求範例
+
+創建文章：
+```bash
+curl -X POST http://localhost:3000/api/articles -H "Content-Type: application/json" -d '{"title": "新文章", "content": "這是新文章的內容", "author": "作者"}'
+```
+
+
+## 測試
+
+本專案包含單元測試和整合測試：
+- 單元測試：測試 Service 層的業務邏輯
+- 整合測試：測試完整的 API 端點功能
+
+## 注意事項
+
+1. 確保 MongoDB 服務已經啟動
+2. 在運行測試前確保已正確設置環境變數
+3. 開發時使用 `npm run dev` 以啟用熱重載
+4. 提交代碼前請運行測試確保所有功能正常
+
+## 依賴套件
+
+主要依賴：
+- express
+- mongoose
+- dotenv
+- nodemon (開發依賴)
+
+測試依賴：
+- jest
+- supertest
+- mongodb-memory-server
+
+## 錯誤處理
+
+API 錯誤響應格式：
+json
+{
+"message": "錯誤信息"
+}
+
+
+常見 HTTP 狀態碼：
+- 200: 成功
+- 201: 創建成功
+- 400: 請求格式錯誤
+- 404: 資源未找到
+- 500: 服務器錯誤
